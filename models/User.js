@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    emil:{
+    email:{
         type: String,
         required:true,
         unique:true
@@ -10,11 +10,7 @@ const userSchema = new Schema({
     password:{
         type:String,
         required:true
-    },
-    user:{
-        ref:'users',
-        type: Schema.Types.ObjectId
     }
 });
 
-module.exports = mongoose.model('users', categorySchema);
+module.exports = mongoose.model('users', userSchema);
