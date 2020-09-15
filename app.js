@@ -9,7 +9,7 @@ const positionRoutes = require('./routes/position');
 const keys = require('./config/keys');
 const app = express();
 
-mongoose.connect(decodeURI(keys.mongoURI),{useNewUrlParser:true, useUnifiedTopology:true})
+mongoose.connect(decodeURI(keys.mongoURI),{useNewUrlParser:true, useUnifiedTopology:true,useCreateIndex:true})
     .then(() => console.log('Mongodb connected.'))
     .catch(error => console.log('Mongodb error',error));
 
