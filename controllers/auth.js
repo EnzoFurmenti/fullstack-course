@@ -1,9 +1,35 @@
 const bcrypt = require('bcryptjs');
-const User = require('../models/User')
+const User = require('../models/User');
+const jwt = require('jsonwebtoken');
+const keys = require('../config/keys');
 
 
-module.exports.login = function(req, res) {
-
+module.exports.login = async function(req, res) {
+    const candidate = await User.findOne({email:req.body.email});
+    if(candidate){
+        //Проверка пароля, пользователь существует
+        const passwordResult = bcrypt.compareSync(req.body.password, candidate.password);
+        if(passwordResult) {
+            //Генерация токена, пароли  совпали
+            const token = jwt.sign({
+               email: candidate.email,
+               userId: candidate._id
+            }, keys.jwt,{expiresIn:3600});
+            res.status(200).json({
+                token: `Bearer ${token}`
+            });
+        } else{
+            //Пароли не совпали
+            res.status(401).json({
+                message: 'Пароли не совпадают. Попробуйте снова. '
+            });
+        }
+    }else{
+      //Пользователя нет
+        res.status(404).json({
+            message: 'Пользователь не найден, ошибка. '
+        });
+    }
 };
 
 module.exports.register = async function(req, res) {
