@@ -5,12 +5,16 @@ module.exports.login = function(req, res) {
 
 };
 
-module.exports.register = function(req, res) {
+module.exports.register = async function(req, res) {
+    // email password
 
-   const user = new User({
-       email:req.body.email,
-       password:req.body.password
-   });
-   user.save()
-       .then(() => console.log('User created'));
+    const candidate = await User.findOne({email:req.body.email});
+    if(candidate){
+        // Пользователь существует, нужно отдать ошибку
+        res.status(409).json({
+            message: 'Такой email уже занят. Попробуйте другой. '
+        });
+    }else{
+        // Нужно создать пользователя
+    }
 };
