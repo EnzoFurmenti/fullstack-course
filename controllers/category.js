@@ -21,8 +21,16 @@ module.exports.getById = async function(req, res) {
     }
 };
 
-module.exports.remove = function(req, res) {
-
+module.exports.remove = async function(req, res) {
+    try{
+        await Position.remove({_id:req.params.id});
+        await Position.remove({category:req.params.id});
+        res.status(200).json({
+            message:'Категория была удалена'
+        })
+    }catch (e){
+        errorHandler(e);
+    }
 };
 
 module.exports.create = function(req, res) {
