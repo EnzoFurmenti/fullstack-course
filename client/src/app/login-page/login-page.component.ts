@@ -26,7 +26,7 @@ export class LoginPageComponent implements OnInit,OnDestroy {
 
     this.route.queryParams.subscribe((params:Params) =>{
       if (params['registered']){
-        // Теперь вы можетет зайти в сиситему используя свои данные
+        // Теперь вы можетет зайти в систему используя свои данные
       } else if(params['accessDenied']){
         // Для начала авторизуйтесь в системе
       }
@@ -42,7 +42,7 @@ export class LoginPageComponent implements OnInit,OnDestroy {
   onSubmit(){
     this.form.disable();
     this.aSub = this.auth.login(this.form.value).subscribe(
-      () => this.router.navigate(['overview']),
+      () => this.router.navigate(['/overview']),
       error =>{
         console.warn(error);
         this.form.enable();
