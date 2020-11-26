@@ -56,6 +56,7 @@ module.exports.register = async function(req, res) {
         }catch(e){
             //Обработать ошибку
             errorHandler(res,error);
+            errorHandler(res,e);
         }
     }
 };

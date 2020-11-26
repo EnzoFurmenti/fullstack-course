@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const positionSchema = new Schema({
+const orderSchema = new Schema({
     date:{
         type: Date,
         default: Date.now
@@ -33,4 +33,4 @@ const positionSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('positions', positionSchema);
+module.exports = mongoose.model('orders', orderSchema);
