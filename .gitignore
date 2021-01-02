@@ -59,6 +59,9 @@ yarn-error.log
 testem.log
 /client/typings
 
+config/keys.dev.js
+client/etc
+
 # System Files
 .DS_Store
 Thumbs.db
