@@ -25,8 +25,8 @@ export class HistoryFilterComponent implements OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.start = MaterialService.initDatePicker(this.startRef, this.validate.bind(this))
-    this.end = MaterialService.initDatePicker(this.endRef, this.validate.bind(this))
+    this.start = MaterialService.initDatepicker(this.startRef, this.validate.bind(this))
+    this.end = MaterialService.initDatepicker(this.endRef, this.validate.bind(this))
   }
 
   validate() {
